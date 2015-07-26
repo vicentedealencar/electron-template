@@ -7,14 +7,17 @@ import thunk from 'redux-thunk';
 import * as reducers from "reducers"
 import { Provider } from 'react-redux';
 import Root from "root"
+import App from './containers/App';
 
 const history = new HashHistory();
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
 const store = createStoreWithMiddleware(reducer);
-const element = (
-  <Provider store={store}>
-    {() => <Router history={history} routes={routes} /> }
-  </Provider>
-);
+// const element = (
+//   <Provider store={store}>
+//     {() => <Router history={history} routes={routes} /> }
+//   </Provider>
+// );
+const element = <App />;
+
 React.render(element, document.body);
