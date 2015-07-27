@@ -9,7 +9,7 @@ export default class Catalog {
   render() {
     const { addToCart, products } = this.props;
 
-    const catalogItens = products.map(p => <CatalogItem product={p} addToCart={addToCart} />);
+    const catalogItens = products.map(p => <CatalogItem product={p} addToCart={addToCart} key={p.id} />);
 
     return (
       <div>

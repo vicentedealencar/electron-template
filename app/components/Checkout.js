@@ -3,21 +3,18 @@ import Catalog from './Catalog';
 import Cart from './Cart';
 import Payment from './Payment';
 
-export default class CheckoutApp {
+export default class Checkout {
   static propTypes = {
-    addToCart: PropTypes.func.isRequired,
-    closeOrder: PropTypes.func.isRequired,
-    confirmPayment: PropTypes.func.isRequired,
-    products: PropTypes.array,
-    cart: PropTypes.object
+    actions: PropTypes.object.isRequired,
+    products: PropTypes.array.isRequired,
+    cart: PropTypes.object.isRequired
   };
 
   render() {
-    const { addToCart, closeOrder, confirmPayment, products, cart } = this.props;
+    const { actions, products, cart } = this.props;
+    const { addToCart, closeOrder, confirmPayment } = actions;
 
     let catalog, payment;
-
-    console.log('render');
 
     if (!cart.isClosed) {
       catalog = <Catalog products={products} addToCart={addToCart} />;

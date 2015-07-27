@@ -1,32 +1,36 @@
-import { ADD_TO_CART } from '../constants/ActionTypes';
+import { ADD_TO_CART, CLOSE_ORDER } from '../constants/ActionTypes';
 
 const initialState = {
   itens: [],
-  total: 0
+  total: 0,
+  isClosed: false
 };
 
-export default function cart(cart = initialState, action) {
+export default function cart(state = initialState, action) {
   switch (action.type) {
   case ADD_TO_CART:
     const product = action.product;
-    const found = cart.itens.filter(i => i.id === product.id);
+    const found = state.itens.filter(i => i.id === product.id);
 
     if (found && found[0]) {
       found[0].quantity++;
       found[0].value += product.price;
     } else {
 
-      cart.itens = [{
+      state.itens = [{
         id: product.id,
         name: product.name,
         quantity: 1,
         value: product.price
-      }, ...cart.itens];
+      }, ...state.itens];
     }
 
-    cart.total += product.price;
-    return cart;
+    state.total += product.price;
+    return state;
+  case CLOSE_ORDER:
+    state.isClosed = true; //not immutable
+    return state;
   default:
-    return cart;
+    return state;
   }
 }

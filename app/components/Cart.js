@@ -10,7 +10,7 @@ export default class Cart {
   render() {
     const { closeOrder, cart } = this.props;
 
-    const cartItens = cart.itens.map(i => <CartItem item={i} />);
+    const cartItens = cart.itens.map(i => <CartItem item={i} key={i.id}/>);
 
     return (
       <div>
@@ -30,8 +30,6 @@ class CartItem {
 
   render() {
     const { item } = this.props;
-
-    console.log('render item', item);
 
     return (
       <div>
