@@ -1,11 +1,13 @@
-import { CONFIRM_PAYMENT } from '../constants/ActionTypes';
+import { SETTLE_CART } from '../constants/ActionTypes';
 
-export default function orders(orders = [], action) {
+export default function orders(state = [], action) {
   switch (action.type) {
-  case CONFIRM_PAYMENT:
-    const order = action.cart;
-    return [order, ...orders];
+  case SETTLE_CART:
+  	const { order } = action;
+  	console.log('new order', order);
+
+    return [order, ...state];
   default:
-    return orders;
+    return state;
   }
 }

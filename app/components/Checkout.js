@@ -12,21 +12,21 @@ export default class Checkout {
 
   render() {
     const { actions, products, cart } = this.props;
-    const { addToCart, closeOrder, confirmPayment } = actions;
+    const { addToCart, closeCart, settleCart } = actions;
 
     let catalog, payment;
 
     if (!cart.isClosed) {
       catalog = <Catalog products={products} addToCart={addToCart} />;
     } else {
-      payment = <Payment cart={cart} confirmPayment={confirmPayment} />;
+      payment = <Payment cart={cart} settleCart={settleCart} />;
     }
 
     return (
       <div>
         <h1>Checkout</h1>
         {catalog}
-        <Cart cart={cart} closeOrder={closeOrder} />
+        <Cart cart={cart} closeCart={closeCart} />
         {payment}
       </div>
     );

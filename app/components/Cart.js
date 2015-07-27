@@ -3,21 +3,23 @@ import { Button } from 'react-bootstrap';
 
 export default class Cart {
   static propTypes = {
-    closeOrder: PropTypes.func.isRequired,
+    closeCart: PropTypes.func.isRequired,
     cart: PropTypes.object.isRequired
   };
 
   render() {
-    const { closeOrder, cart } = this.props;
+    const { closeCart, cart } = this.props;
 
     const cartItens = cart.itens.map(i => <CartItem item={i} key={i.id}/>);
 
+    const buttonText = cart.isClosed ? 'OPEN' : 'CLOSE';
+console.log('render cart (only time whyyyy?)', cart);
     return (
       <div>
         <h2>Cart</h2>
         {cartItens}
         {cart.total}
-        <Button onClick={() => closeOrder()}>CLOSE</Button>
+        <Button onClick={() => closeCart(!cart.isClosed)}>{buttonText}</Button>
       </div>
     );
   }

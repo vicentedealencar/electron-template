@@ -1,23 +1,27 @@
-import React from 'react';
-import Router from 'react-router';
-import HashHistory from 'react-router/lib/HashHistory';
-import routes from './routes';
+// import Router from 'react-router';
+// import HashHistory from 'react-router/lib/HashHistory';
+// import routes from './routes';
+import React, { Component } from 'react';
+import CheckoutContainer from './containers/CheckoutContainer';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import * as reducers from "reducers"
 import { Provider } from 'react-redux';
-import Root from "root"
-import App from './containers/App';
+import * as reducers from './reducers';
 
-const history = new HashHistory();
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
 const store = createStoreWithMiddleware(reducer);
+
+const element = (
+  <Provider store={store}>
+    {() => <CheckoutContainer />}
+  </Provider>);
+
+// const history = new HashHistory();
 // const element = (
 //   <Provider store={store}>
 //     {() => <Router history={history} routes={routes} /> }
 //   </Provider>
 // );
-const element = <App />;
 
 React.render(element, document.body);

@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Button } from 'react-bootstrap';
 
 export default class Catalog {
   static propTypes = {
@@ -30,9 +31,9 @@ class CatalogItem {
     const { addToCart, product } = this.props;
 
     return (
-      <div onClick={() => addToCart(product)}>
-        {product.name}
-      </div>
+      <Button onClick={() => addToCart(product)}>
+        {product.name + " - " + product.price}
+      </Button>
     );
   }
 }

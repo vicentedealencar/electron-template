@@ -1,4 +1,4 @@
-import { ADD_TO_CART, CLOSE_ORDER, CONFIRM_PAYMENT } from '../constants/ActionTypes';
+import { ADD_TO_CART, CLOSE_CART, UPDATE_CART_PRODUCT_QUANTITY, SETTLE_CART } from '../constants/ActionTypes';
 
 export function addToCart(product) {
   return {
@@ -7,15 +7,29 @@ export function addToCart(product) {
   };
 }
 
-export function closeOrder() {
+export function closeCart(isClosed) {
   return {
-    type: CLOSE_ORDER
+    type: CLOSE_CART,
+    isClosed
   };
 }
 
-export function confirmPayment(cart) {
+export function updateCartProductQuantity(productId, up) {
   return {
-    type: CONFIRM_PAYMENT,
-    cart
+    type: UPDATE_CART_PRODUCT_QUANTITY,
+    productId,
+    up
+  };
+}
+
+//require redux-thunk middleware
+export function settleCart() {
+  return (dispatch, getState) => {
+    const { cart } = getState();
+
+    dispatch({
+      type: SETTLE_CART,
+      cart
+    });
   };
 }
