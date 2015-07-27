@@ -2,7 +2,7 @@ import { ADD_TO_CART, CLOSE_CART, UPDATE_CART_PRODUCT_QUANTITY, SETTLE_CART } fr
 import invariant from 'invariant';
 
 const initialState = {
-  itens: [],
+  itens: {},
   total: 0,
   isClosed: false
 };
@@ -11,13 +11,19 @@ export default function cart(state = initialState, action) {
   switch (action.type) {
   case ADD_TO_CART:
     const product = action.product;
-    const found = state.itens.filter(i => i.id === product.id);
+    const found = state.itens[product.id];
+    const total = state.total + product.price;
+    
+    let itens;
+
     if (found && found[0]) {
       found[0].quantity++;
       found[0].value += product.price;
+
+      itens = [...state.itens];
     } else {
 
-      state.itens = [{
+      itens = [{
         id: product.id,
         name: product.name,
         quantity: 1,
@@ -25,10 +31,11 @@ export default function cart(state = initialState, action) {
       }, ...state.itens];
     }
 
-    state.total += product.price;
-console.log('action', action);
-console.log('state', state);
-    return state;
+    return {
+      ...state,
+      total: total,
+      itens: itens,
+    };
   case CLOSE_CART:
     state.isClosed = action.isClosed;
     return state;
