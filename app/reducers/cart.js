@@ -2,52 +2,78 @@ import { ADD_TO_CART, CLOSE_CART, UPDATE_CART_PRODUCT_QUANTITY, SETTLE_CART } fr
 import invariant from 'invariant';
 
 const initialState = {
-  itens: {},
+  itens: [],
+  itensById: {},
   total: 0,
   isClosed: false
 };
 
 export default function cart(state = initialState, action) {
+  let found, total, itensById, itens;
   switch (action.type) {
   case ADD_TO_CART:
     const product = action.product;
-    const found = state.itens[product.id];
-    const total = state.total + product.price;
+    found = state.itensById[product.id];
+    total = state.total + product.price;
     
-    let itens;
+    const updated = found ? {
+      ...found,
+      quantity: found.quantity + 1,
+      value: found.value + found.price
+    } : {
+      ...product,
+      quantity: 1,
+      value: product.price
+    };
 
-    if (found && found[0]) {
-      found[0].quantity++;
-      found[0].value += product.price;
+    itensById = {
+      ...state.itensById,
+      [updated.id]: updated
+    };
 
-      itens = [...state.itens];
-    } else {
-
-      itens = [{
-        id: product.id,
-        name: product.name,
-        quantity: 1,
-        value: product.price
-      }, ...state.itens];
-    }
+    itens = Object.keys(itensById).map(key => itensById[key]);
 
     return {
       ...state,
-      total: total,
-      itens: itens,
+      total,
+      itens,
+      itensById,
     };
   case CLOSE_CART:
-    state.isClosed = action.isClosed;
-    return state;
+    return {
+      ...state,
+      isClosed: action.isClosed
+    };
   case UPDATE_CART_PRODUCT_QUANTITY:
     const { productId, up } = state;
-    const found2 = state.itens.filter(i => i.id === productId);
 
-    invariant(found2 && found2[0], 'productId not found2');
+    found = state.itensById[productId];
 
-    up ? found2[0].quantity++ : found2[0].quantity--;
+    invariant(!!found, 'product not found');
 
-    return state;
+    const quantityDiff = up ? 1 : -1;
+
+    const priceDiff = found.price * quantityDiff;
+
+    total = state.total + priceDiff
+
+    itensById = {
+      ...state.itensById,
+      [found.id]: {
+        ...found,
+        quantity: found.quantity + quantityDiff,
+        value: found.value + priceDiff
+      }
+    };
+
+    itens = Object.keys(itensById).map(key => itensById[key]);
+
+    return {
+      ...state,
+      total,
+      itens,
+      itensById,
+    };
   case SETTLE_CART:
     return initialState;
   default:

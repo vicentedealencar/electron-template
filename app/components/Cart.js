@@ -13,12 +13,12 @@ export default class Cart {
     const cartItens = cart.itens.map(i => <CartItem item={i} key={i.id}/>);
 
     const buttonText = cart.isClosed ? 'OPEN' : 'CLOSE';
-console.log('render cart (only time whyyyy?)', cart);
+    
     return (
       <div>
         <h2>Cart</h2>
         {cartItens}
-        {cart.total}
+        <h3>total {cart.total}</h3>
         <Button onClick={() => closeCart(!cart.isClosed)}>{buttonText}</Button>
       </div>
     );
@@ -35,9 +35,7 @@ class CartItem {
 
     return (
       <div>
-        {item.name}
-        {item.quantity}
-        {item.value}
+        {item.quantity}x {item.name} {item.value}
       </div>
     );
   }
