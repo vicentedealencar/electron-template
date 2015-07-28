@@ -2,10 +2,11 @@
   "name": "changeme",
   "version": "0.0.0",
   "description": "",
-  "main" : "electron/main.js",
+  "main": "electron/main.js",
   "scripts": {
     "debug": "node ./webpack/dev-server.js",
-    "build": "node node_modules/webpack/bin/webpack.js -p --colors --progress --config=./webpack/prod.config.js"
+    "build": "node node_modules/webpack/bin/webpack.js -p --colors --progress --config=./webpack/prod.config.js",
+    "electron": "electron ."
   },
   "author": "",
   "license": "BSD",
@@ -14,6 +15,7 @@
     "babel-core": "^5.6.15",
     "babel-loader": "^5.3.1",
     "css-loader": "^0.15.1",
+    "electron-prebuilt": "^0.30.1",
     "extract-text-webpack-plugin": "^0.8.2",
     "node-libs-browser": "^0.5.2",
     "react-hot-loader": "^1.2.7",
@@ -22,7 +24,10 @@
     "webpack-dev-server": "^1.10.1"
   },
   "dependencies": {
+    "bootstrap": "^3.3.5",
+    "invariant": "^2.1.0",
     "react": "^0.13.3",
+    "react-bootstrap": "^0.24.2",
     "react-redux": "^0.2.1",
     "react-router": "v1.0.0-beta2",
     "redux": "^1.0.0-rc",
