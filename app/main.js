@@ -7,15 +7,20 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import * as reducers from './reducers';
+import { pouchMiddleware, getState } from './redux-pouchdb';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const reducer = combineReducers(reducers);
-const store = createStoreWithMiddleware(reducer);
+getState().then(initialState =>{
+  const createStoreWithMiddleware = applyMiddleware(thunk, pouchMiddleware)(createStore);
+  const reducer = combineReducers(reducers);
+  const store = createStoreWithMiddleware(reducer, initialState);
 
-const element = (
-  <Provider store={store}>
-    {() => <CheckoutContainer />}
-  </Provider>);
+  const element = (
+    <Provider store={store}>
+      {() => <CheckoutContainer />}
+    </Provider>);
+
+  React.render(element, document.body);
+});
 
 // const history = new HashHistory();
 // const element = (
@@ -23,5 +28,3 @@ const element = (
 //     {() => <Router history={history} routes={routes} /> }
 //   </Provider>
 // );
-
-React.render(element, document.body);

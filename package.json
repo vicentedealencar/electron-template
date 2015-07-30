@@ -24,8 +24,11 @@
     "webpack-dev-server": "^1.10.1"
   },
   "dependencies": {
+    "belle": "^1.1.1",
     "bootstrap": "^3.3.5",
     "invariant": "^2.1.0",
+    "json-loader": "^0.5.2",
+    "pouchdb": "^3.6.0",
     "react": "^0.13.3",
     "react-bootstrap": "^0.24.2",
     "react-redux": "^0.2.1",
