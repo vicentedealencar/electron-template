@@ -1,4 +1,5 @@
 import { ADD_TO_CART, CLOSE_CART, UPDATE_CART_PRODUCT_QUANTITY, SETTLE_CART } from '../constants/ActionTypes';
+import { DB_CHANGES } from '../redux-pouchdb';
 import invariant from 'invariant';
 
 const initialState = {
@@ -11,11 +12,13 @@ const initialState = {
 export default function cart(state = initialState, action) {
   let found, total, itensById, itens;
   switch (action.type) {
+  case DB_CHANGES:
+    return action.cart;
   case ADD_TO_CART:
     const product = action.product;
     found = state.itensById[product.id];
     total = state.total + product.price;
-    
+
     const updated = found ? {
       ...found,
       quantity: found.quantity + 1,

@@ -3,24 +3,25 @@
 // import routes from './routes';
 import React, { Component } from 'react';
 import CheckoutContainer from './containers/CheckoutContainer';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import * as reducers from './reducers';
-import { pouchMiddleware, getState } from './redux-pouchdb';
+import { persistState } from './redux-pouchdb';
 
-getState().then(initialState =>{
-  const createStoreWithMiddleware = applyMiddleware(thunk, pouchMiddleware)(createStore);
-  const reducer = combineReducers(reducers);
-  const store = createStoreWithMiddleware(reducer, initialState);
+const createStoreWithMiddleware = compose(
+  applyMiddleware(thunk),
+  persistState(),
+  createStore);
+const reducer = combineReducers(reducers);
+const store = createStoreWithMiddleware(reducer);
 
-  const element = (
-    <Provider store={store}>
-      {() => <CheckoutContainer />}
-    </Provider>);
+const element = (
+  <Provider store={store}>
+    {() => <CheckoutContainer />}
+  </Provider>);
 
-  React.render(element, document.body);
-});
+React.render(element, document.body);
 
 // const history = new HashHistory();
 // const element = (
