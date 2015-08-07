@@ -48,8 +48,8 @@ const updateState = (reducerName, nextState) => {
       [reducerName]: nextState
     };
 
-    console.log('old', doc);
-    console.log('new', newDoc);
+    // console.log('old', doc);
+    // console.log('new', newDoc);
     db.put(newDoc).catch(error => {
       console.error(error);
     }).then(() => {
@@ -66,7 +66,9 @@ const updateState = (reducerName, nextState) => {
 
 export function persist(reducer) {
   const fn = (state, action) => {
-    const nextState = action[reducer.name] || reducer(state, action);
+    const nextState = action.type === DB_CHANGES ? 
+      action[reducer.name] :
+      reducer(state, action);
 
     updateState(reducer.name, nextState);
 
