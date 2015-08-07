@@ -7,8 +7,12 @@ const docId = 'redux-store';
 const emptyDoc = {_id: docId};
 
 export const getState = () => {
-  return db.get(docId).catch(error => {
-    return db.put(emptyDoc).then(() => emptyDoc);
+  return db.get(docId).catch(function (err) {
+    if (err.status === 404) { // not found!
+      return db.put(emptyDoc).then(() => db.get(docId));
+    } else { // hm, some other error
+      throw err;
+    }
   });
 }
 
@@ -19,32 +23,57 @@ export const persistState = () => createStore => (reducer, initialState) => {
     store.dispatch({ type: DB_CHANGES, ...change.doc});
   });
 
-  return {
-    ...store,
-    dispatch(action) {
-      store.dispatch(action);
-      const state = store.getState();
-
-    	db.get(docId).then(doc => {
-    	  db.put({
-    	    ...doc,
-    	    ...state
-    	  }).catch(error => {
-    	    console.error(error);
-        });
-    	});
-
-      return action;
-    }
-  }
+  return store;
 };
 
-// //on every reducer. @persist() maybe
-// export const pouchReducer = (state, action) => {
-//   switch (action.type) {
-//   case DB_CHANGES:
-//     return action.asd;
-//   default:
-//     return state;
-//   }
-// };
+let unpersistedState = null;
+let isUpdating = false;
+
+const updateState = (reducerName, nextState) => {
+  if (isUpdating) {
+    unpersistedState = {
+      ...unpersistedState,
+      [reducerName]: nextState
+    };
+
+    return;
+  }
+
+  isUpdating = true;
+
+  getState().then(doc => {
+    const newDoc = {
+      ...doc,
+      ...unpersistedState,
+      [reducerName]: nextState
+    };
+
+    console.log('old', doc);
+    console.log('new', newDoc);
+    db.put(newDoc).catch(error => {
+      console.error(error);
+    }).then(() => {
+      isUpdating = false;
+
+      if (unpersistedState) {
+        updateState(unpersistedState);
+      }
+    });
+
+    unpersistedState = null;
+  });
+};
+
+export function persist(reducer) {
+  const fn = (state, action) => {
+    const nextState = action[reducer.name] || reducer(state, action);
+
+    updateState(reducer.name, nextState);
+
+    return nextState;
+  };
+
+  return fn;
+}
+
+window.destroyDb = () => db.destroy();

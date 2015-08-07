@@ -1,4 +1,4 @@
-import { DB_CHANGES } from '../redux-pouchdb';
+import { persist } from '../redux-pouchdb';
 
 const initialState = [{
 	id: 1,
@@ -18,11 +18,11 @@ const initialState = [{
 	price: 3
 }];
 
-export default function products(product = initialState, action) {
+function products(product = initialState, action) {
   switch (action.type) {
-  case DB_CHANGES:
-    return action.products;
   default:
     return product;
   }
 }
+
+export default persist(products);

@@ -1,5 +1,5 @@
 import { ADD_TO_CART, CLOSE_CART, UPDATE_CART_PRODUCT_QUANTITY, SETTLE_CART } from '../constants/ActionTypes';
-import { DB_CHANGES } from '../redux-pouchdb';
+import { persist } from '../redux-pouchdb';
 import invariant from 'invariant';
 
 const initialState = {
@@ -9,11 +9,9 @@ const initialState = {
   isClosed: false
 };
 
-export default function cart(state = initialState, action) {
+function cart(state = initialState, action) {
   let found, total, itensById, itens;
   switch (action.type) {
-  case DB_CHANGES:
-    return action.cart;
   case ADD_TO_CART:
     const product = action.product;
     found = state.itensById[product.id];
@@ -83,3 +81,5 @@ export default function cart(state = initialState, action) {
     return state;
   }
 }
+
+export default persist(cart);
