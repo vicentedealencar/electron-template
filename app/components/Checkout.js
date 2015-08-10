@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import Catalog from './Catalog';
 import Cart from './Cart';
 import Payment from './Payment';
+import { Card } from 'belle';
 
 export default class Checkout {
   static propTypes = {
@@ -23,12 +24,12 @@ export default class Checkout {
     }
 
     return (
-      <div>
+      <Card style={{ borderTop: '1px solid #f2f2f2', fontFamily: 'Helvetica' }}>
         <h1>Checkout</h1>
         {catalog}
         <Cart cart={cart} closeCart={closeCart} />
         {payment}
-      </div>
+      </Card>
     );
   }
 }

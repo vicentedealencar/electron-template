@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'belle';
 
 export default class Catalog {
   static propTypes = {
@@ -13,10 +13,10 @@ export default class Catalog {
     const catalogItens = products.map(p => <CatalogItem product={p} addToCart={addToCart} key={p.id} />);
 
     return (
-      <div>
+      <Card style={{ borderTop: '1px solid #f2f2f2' }}>
         <h2>Catalog</h2>
         {catalogItens}
-      </div>
+      </Card>
     );
   }
 }

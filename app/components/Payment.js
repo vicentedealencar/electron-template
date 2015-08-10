@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'belle';
 
 export default class Payment {
   static propTypes = {
@@ -11,11 +11,11 @@ export default class Payment {
     const { settleCart, cart } = this.props;
 
     return (
-      <div>
+      <Card style={{ borderTop: '1px solid #f2f2f2' }}>
         <h2>Payment</h2>
-        {cart.total}
+        <h3>total {cart.total}</h3>
         <Button onClick={() => settleCart(cart)} bsStyle="primary">CONFIRM</Button>
-      </div>
+      </Card>
     );
   }
 }

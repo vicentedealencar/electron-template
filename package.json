@@ -30,7 +30,6 @@
     "json-loader": "^0.5.2",
     "pouchdb": "^3.6.0",
     "react": "^0.13.3",
-    "react-bootstrap": "^0.24.2",
     "react-redux": "^0.2.1",
     "react-router": "v1.0.0-beta2",
     "redux": "^1.0.0-rc",
