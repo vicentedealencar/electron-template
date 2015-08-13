@@ -7,7 +7,7 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import * as reducers from './reducers';
-import { persistState } from './redux-pouchdb';
+import { persistState } from 'redux-pouchdb';
 
 const createStoreWithMiddleware = compose(
   applyMiddleware(thunk),

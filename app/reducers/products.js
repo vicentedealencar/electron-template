@@ -1,4 +1,4 @@
-import { persist } from '../redux-pouchdb';
+import { persist } from 'redux-pouchdb';
 
 const initialState = [{
 	id: 1,

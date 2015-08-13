@@ -1,5 +1,5 @@
 import { SETTLE_CART } from '../constants/ActionTypes';
-import { persist } from '../redux-pouchdb';
+import { persist } from 'redux-pouchdb';
 
 function orders(state = [], action) {
   switch (action.type) {

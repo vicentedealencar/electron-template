@@ -1,5 +1,5 @@
 import { ADD_TO_CART, CLOSE_CART, UPDATE_CART_PRODUCT_QUANTITY, SETTLE_CART } from '../constants/ActionTypes';
-import { persist } from '../redux-pouchdb';
+import { persist } from 'redux-pouchdb';
 import invariant from 'invariant';
 
 const initialState = {
