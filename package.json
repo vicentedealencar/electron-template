@@ -34,7 +34,7 @@
     "react-router": "v1.0.0-beta2",
     "redux": "^1.0.0-rc",
     "redux-logger": "0.0.3",
-    "redux-pouchdb": "^0.0.3",
+    "redux-pouchdb": "^0.0.4",
     "redux-thunk": "^0.1.0"
   }
 }
