@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import loggerMiddleware from 'redux-logger';
-import { persistState } from 'redux-pouchdb';
+import { persistentStore } from 'redux-pouchdb';
 import * as reducers from '../reducers';
 
 const reducer = combineReducers(reducers);
@@ -13,7 +13,7 @@ const applyMiddlewares = applyMiddleware(
 
 const createStoreWithMiddleware = compose(
   applyMiddlewares,
-  persistState(),
+  persistentStore,
   createStore);
 
 export default function initializeCheckout(initialState) {

@@ -1,4 +1,4 @@
-import { persist } from 'redux-pouchdb';
+import { persistentReducer } from 'redux-pouchdb';
 
 const initialState = [{
 	id: 1,
@@ -25,4 +25,4 @@ function products(product = initialState, action) {
   }
 }
 
-export default persist(products);
+export default persistentReducer(products);
