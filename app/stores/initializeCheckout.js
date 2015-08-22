@@ -11,11 +11,22 @@ const applyMiddlewares = applyMiddleware(
   loggerMiddleware
 );
 
-const createStoreWithMiddleware = compose(
-  applyMiddlewares,
-  persistentStore,
-  createStore);
+let finalCreateStore;
+if (__DEV__) {
+	const { devTools } = require('redux-devtools');
+
+	finalCreateStore = compose(
+	  applyMiddlewares,
+	  devTools(),
+	  persistentStore,
+	  createStore);
+} else {
+	finalCreateStore = compose(
+	  applyMiddlewares,
+	  persistentStore,
+	  createStore);
+}
 
 export default function initializeCheckout(initialState) {
-  return createStoreWithMiddleware(reducer, initialState);
+  return finalCreateStore(reducer, initialState);
 }
