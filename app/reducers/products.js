@@ -7,15 +7,15 @@ const initialState = [{
 }, {
 	id: 2,
 	name: 'pepsi',
-	price: 3
+	price: 4
 }, {
 	id: 3,
 	name: 'açai',
-	price: 3
+	price: 5
 }, {
 	id: 4,
 	name: 'mate',
-	price: 3
+	price: 6
 }];
 
 function products(product = initialState, action) {

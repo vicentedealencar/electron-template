@@ -13,7 +13,7 @@ export default class Payment {
     return (
       <Card style={{ borderTop: '1px solid #f2f2f2' }}>
         <h2>Payment</h2>
-        <h3>total {cart.total}</h3>
+        <h3>Total: R${cart.total.toFixed(2)}</h3>
         <Button onClick={() => settleCart(cart)} bsStyle="primary">CONFIRM</Button>
       </Card>
     );

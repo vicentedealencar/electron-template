@@ -13,7 +13,7 @@ function cart(state = initialState, action) {
   let found, total, itensById, itens;
   switch (action.type) {
   case ADD_TO_CART:
-    const product = action.product;
+    const { product } = action;
     found = state.itensById[product.id];
     total = state.total + product.price;
 
@@ -46,7 +46,7 @@ function cart(state = initialState, action) {
       isClosed: action.isClosed
     };
   case UPDATE_CART_PRODUCT_QUANTITY:
-    const { productId, up } = state;
+    const { productId, up } = action;
 
     found = state.itensById[productId];
 

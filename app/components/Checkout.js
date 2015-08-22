@@ -13,7 +13,7 @@ export default class Checkout {
 
   render() {
     const { actions, products, cart } = this.props;
-    const { addToCart, closeCart, settleCart } = actions;
+    const { addToCart, closeCart, settleCart, updateCartProductQuantity } = actions;
 
     let catalog, payment;
 
@@ -27,7 +27,7 @@ export default class Checkout {
       <Card style={{ borderTop: '1px solid #f2f2f2', fontFamily: 'Helvetica' }}>
         <h1>Checkout</h1>
         {catalog}
-        <Cart cart={cart} closeCart={closeCart} />
+        <Cart cart={cart} closeCart={closeCart} updateCartProductQuantity={updateCartProductQuantity} />
         {payment}
       </Card>
     );

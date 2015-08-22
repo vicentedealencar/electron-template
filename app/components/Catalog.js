@@ -31,8 +31,9 @@ class CatalogItem {
     const { addToCart, product } = this.props;
 
     return (
-      <Button onClick={() => addToCart(product)}>
-        {product.name + " - " + product.price}
+      <Button onClick={() => addToCart(product)} style={ {marginRight: 10} }>
+        {product.name} <br/>
+        R${product.price.toFixed(2)}
       </Button>
     );
   }
