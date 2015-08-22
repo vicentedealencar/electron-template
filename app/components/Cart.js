@@ -39,7 +39,7 @@ class CartItem {
         <a onClick={() => updateCartProductQuantity(item.id, false)} style={ {color: 'blue', cursor: 'pointer'} }> - </a>
         {item.quantity}
         <a onClick={() => updateCartProductQuantity(item.id, true)} style={ {color: 'blue', cursor: 'pointer'} }> + </a>
-        {item.name} 
+        {item.name}
         R${item.value.toFixed(2)}
       </div>
     );

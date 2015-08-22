@@ -2,7 +2,12 @@ var webpack = require('webpack');
 var config = require("./prod.config.js");
 config.devtool = "eval";
 
-config.entry.push('webpack-dev-server/client?http://localhost:1337/');
+config.devServer = {port: 1337};
+config.devServer.url = 'http://localhost:' + config.devServer.port;
+
+config.output.publicPath = config.devServer.url + config.output.publicPath;
+
+config.entry.push('webpack-dev-server/client?' + config.devServer.url);
 config.entry.push('webpack/hot/only-dev-server');
 config.plugins = [
     new webpack.HotModuleReplacementPlugin(),
