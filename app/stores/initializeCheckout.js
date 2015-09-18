@@ -12,20 +12,20 @@ const applyMiddlewares = applyMiddleware(
 );
 
 let finalCreateStore;
-if (__DEV__) {
-	const { devTools } = require('redux-devtools');
+// if (__DEV__) {
+// 	const { devTools } = require('redux-devtools');
 
+// 	finalCreateStore = compose(
+// 	  applyMiddlewares,
+// 	  devTools(),
+// 	  persistentStore)
+// 	  (createStore);
+// } else {
 	finalCreateStore = compose(
 	  applyMiddlewares,
-	  devTools(),
-	  persistentStore,
-	  createStore);
-} else {
-	finalCreateStore = compose(
-	  applyMiddlewares,
-	  persistentStore,
-	  createStore);
-}
+	  persistentStore)
+	  (createStore);
+// }
 
 export default function initializeCheckout(initialState) {
   return finalCreateStore(reducer, initialState);

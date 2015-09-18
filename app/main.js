@@ -13,20 +13,20 @@ const elements = [
   </Provider>
 ];
 
-if (__DEV__) {
-  elements.push(
-    <DebugPanel top right bottom key="debugPanel">
-      <DevTools store={store} monitor={LogMonitor}/>
-    </DebugPanel>
-  );
-  elements.push(
-    <DebugPanel left right bottom>      // ctrl+h: toggle hiding the monitor
-      <DevTools store={store}           // ctrl+j: play/pause
-                keyboardEnabled         // ctrl+[: step backward
-                monitor={SliderMonitor} // ctrl+]: step forward
-      />
-    </DebugPanel>
-  );
-}
+// if (__DEV__) {
+//   elements.push(
+//     <DebugPanel top right bottom key="debugPanel">
+//       <DevTools store={store} monitor={LogMonitor}/>
+//     </DebugPanel>
+//   );
+//   elements.push(
+//     <DebugPanel left right bottom>      // ctrl+h: toggle hiding the monitor
+//       <DevTools store={store}           // ctrl+j: play/pause
+//                 keyboardEnabled         // ctrl+[: step backward
+//                 monitor={SliderMonitor} // ctrl+]: step forward
+//       />
+//     </DebugPanel>
+//   );
+// }
 
 React.render(<div>{elements}</div>, document.body);
