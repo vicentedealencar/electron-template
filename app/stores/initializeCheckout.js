@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import loggerMiddleware from 'redux-logger';
+import createLogger from 'redux-logger';
 import persistState, { mergePersistedState  } from 'redux-localstorage';
 import adapter from 'redux-localstorage-pouchdb';
 import * as reducers from '../reducers';
@@ -12,7 +12,9 @@ const reducer = compose(mergePersistedState())(rootReducer);
 
 const db = new PouchDB('checkout-db');
 
-const storage = adapter();
+const storage = adapter(db);
+
+const loggerMiddleware = createLogger();
 
 const applyMiddlewares = applyMiddleware(
   thunkMiddleware,
