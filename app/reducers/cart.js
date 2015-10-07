@@ -1,5 +1,4 @@
 import { ADD_TO_CART, CLOSE_CART, UPDATE_CART_PRODUCT_QUANTITY, SETTLE_CART } from '../constants/ActionTypes';
-import { persistentReducer } from 'redux-pouchdb';
 import invariant from 'invariant';
 
 const initialState = {
@@ -82,4 +81,4 @@ function cart(state = initialState, action) {
   }
 }
 
-export default persistentReducer(cart);
+export default cart;
