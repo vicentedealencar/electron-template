@@ -1,40 +1,28 @@
-import React, { PropTypes } from 'react';
-import { Button, Card } from 'belle';
+import React, { PropTypes } from 'react'
+import { Button, Card } from 'belle'
 
-export default class Catalog {
-  static propTypes = {
-    addToCart: PropTypes.func.isRequired,
-    products: PropTypes.array
-  };
+const CatalogItem = props => {
+  const { addToCart, product } = props
 
-  render() {
-    const { addToCart, products } = this.props;
-
-    const catalogItens = products.map(p => <CatalogItem product={p} addToCart={addToCart} key={p.id} />);
-
-    return (
-      <Card style={{ borderTop: '1px solid #f2f2f2' }}>
-        <h2>Catalog</h2>
-        {catalogItens}
-      </Card>
-    );
-  }
+  return (
+    <Button onClick={() => addToCart(product)} style={ {marginRight: 10} }>
+      {product.name} <br/>
+      R${product.price.toFixed(2)}
+    </Button>
+  )
 }
 
-class CatalogItem {
-  static propTypes = {
-    addToCart: PropTypes.func.isRequired,
-    product: PropTypes.object
-  };
+const Catalog = props => {
+  const { addToCart, products } = props
 
-  render() {
-    const { addToCart, product } = this.props;
+  const catalogItens = products.map(p => <CatalogItem product={p} addToCart={addToCart} key={p.id} />)
 
-    return (
-      <Button onClick={() => addToCart(product)} style={ {marginRight: 10} }>
-        {product.name} <br/>
-        R${product.price.toFixed(2)}
-      </Button>
-    );
-  }
+  return (
+    <Card style={{ borderTop: '1px solid #f2f2f2' }}>
+      <h2>Catalog</h2>
+      {catalogItens}
+    </Card>
+  )
 }
+
+export default Catalog

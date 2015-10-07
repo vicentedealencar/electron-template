@@ -5,7 +5,7 @@ import Checkout from '../components/Checkout';
 import Orders from '../components/Orders';
 import * as CheckoutActions from '../actions/CheckoutActions';
 
-export default class CheckoutContainer extends Component {
+class CheckoutContainer extends Component {
   render() {
     const { products, cart, dispatch } = this.props;
 

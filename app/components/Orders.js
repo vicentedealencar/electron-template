@@ -1,38 +1,28 @@
-import React, { PropTypes } from 'react';
-import { Card } from 'belle';
+import React, { PropTypes } from 'react'
+import { Card } from 'belle'
 
-export default class Orders {
-  static propTypes = {
-    orders: PropTypes.array.isRequired
-  };
+const Order = props => {
+  const { order } = props
 
-  render() {
-    const { orders } = this.props;
-
-    const orderComponents = orders.map((o, i) => <Order key={i} order={o} />);
-
-    return (
-      <Card style={{ borderTop: '1px solid #f2f2f2', fontFamily: 'Helvetica' }}>
-        <h1>Orders</h1>
-        {orderComponents}
-      </Card>
-    );
-  }
+  return (
+    <Card style={{ borderTop: '1px solid #f2f2f2', fontFamily: 'Helvetica' }}>
+      <h2>Orders</h2>
+      {JSON.stringify(order)}
+    </Card>
+  )
 }
 
-class Order {
-  static propTypes = {
-    orders: PropTypes.array.isRequired
-  };
+const Orders = props => {
+  const { orders } = props
 
-  render() {
-    const { order } = this.props;
+  const orderComponents = orders.map((o, i) => <Order key={i} order={o} />)
 
-    return (
-      <Card style={{ borderTop: '1px solid #f2f2f2', fontFamily: 'Helvetica' }}>
-        <h2>Orders</h2>
-        {JSON.stringify(order)}
-      </Card>
-    );
-  }
+  return (
+    <Card style={{ borderTop: '1px solid #f2f2f2', fontFamily: 'Helvetica' }}>
+      <h1>Orders</h1>
+      {orderComponents}
+    </Card>
+  )
 }
+
+export default Orders

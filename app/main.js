@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import CheckoutContainer from './containers/CheckoutContainer';
 import { Provider } from 'react-redux';
 import initializeCheckout from './stores/initializeCheckout';
@@ -6,8 +7,8 @@ import initializeCheckout from './stores/initializeCheckout';
 const store = initializeCheckout();
 
 const elements = [
-  <Provider store={store}>
-    {() => <CheckoutContainer />}
+  <Provider store={store} key="p">
+    <CheckoutContainer />
   </Provider>
 ];
 
@@ -30,4 +31,4 @@ const elements = [
 //   );
 // }
 
-React.render(<div>{elements}</div>, document.body);
+ReactDOM.render(<div>{elements}</div>, document.getElementById('app'));
