@@ -5,7 +5,7 @@ Launch Development Server:
 `npm run debug`
 
 Start Electron:
-`npm run electron`
+`npm start`
 
 Build For Production:
 `npm run build`

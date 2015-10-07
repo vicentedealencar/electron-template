@@ -35,7 +35,7 @@
     "redux": "3.0.0",
     "redux-devtools": "^3.0.0-alpha-7",
     "redux-localstorage": "^1.0.0-rc4",
-    "redux-localstorage-pouchdb": "../redux-localstorage-pouchdb",
+    "redux-localstorage-pouchdb": "^0.0.1",
     "redux-logger": "^2.0.3",
     "redux-thunk": "^0.1.0"
   }
