@@ -1,5 +1,4 @@
 import { SETTLE_CART } from '../constants/ActionTypes';
-import { persistentReducer } from 'redux-pouchdb';
 
 function orders(state = [], action) {
   switch (action.type) {
@@ -13,4 +12,4 @@ function orders(state = [], action) {
   }
 }
 
-export default persistentReducer(orders);
+export default orders;

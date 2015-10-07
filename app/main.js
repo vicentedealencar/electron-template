@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import CheckoutContainer from './containers/CheckoutContainer';
 import { Provider } from 'react-redux';
 import initializeCheckout from './stores/initializeCheckout';
-import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
-import SliderMonitor from 'redux-slider-monitor';
 
 const store = initializeCheckout();
 
@@ -14,6 +12,9 @@ const elements = [
 ];
 
 // if (__DEV__) {
+//   const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react');
+//   const SliderMonitor = require('redux-slider-monitor');
+
 //   elements.push(
 //     <DebugPanel top right bottom key="debugPanel">
 //       <DevTools store={store} monitor={LogMonitor}/>

@@ -29,14 +29,14 @@
     "deep-equal": "^1.0.1",
     "invariant": "^2.1.0",
     "json-loader": "^0.5.2",
-    "pouchdb": "^4.0.3",
+    "pouchdb": "^5.0.0",
     "react": "^0.13.3",
     "react-router": "v1.0.0-beta3",
-    "redux": "^3.0.0",
-    "redux-devtools": "^1.0.2",
-    "redux-logger": "0.0.3",
-    "redux-pouchdb": "^0.0.5",
-    "redux-slider-monitor": "^0.5.0",
+    "redux": "3.0.0",
+    "redux-devtools": "^3.0.0-alpha-7",
+    "redux-localstorage": "^1.0.0-rc4",
+    "redux-localstorage-pouchdb": "../redux-localstorage-pouchdb",
+    "redux-logger": "^2.0.3",
     "redux-thunk": "^0.1.0"
   }
 }
