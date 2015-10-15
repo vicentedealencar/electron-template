@@ -32,6 +32,7 @@
     "pouchdb": "^5.0.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
+    "react-redux": "^3.1.0",
     "react-router": "v1.0.0-beta3",
     "redux": "3.0.0",
     "redux-devtools": "^3.0.0-alpha-7",
