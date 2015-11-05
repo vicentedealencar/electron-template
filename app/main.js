@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import CheckoutContainer from './containers/CheckoutContainer';
 import { Provider } from 'react-redux';
 import initializeCheckout from './stores/initializeCheckout';
+import './updater';
 
 const store = initializeCheckout();
 

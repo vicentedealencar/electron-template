@@ -1,14 +1,16 @@
 {
   "name": "yet-another-package",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "electron/main.js",
   "scripts": {
     "start": "node ./webpack/dev-server.js",
     "build": "node node_modules/webpack/bin/webpack.js -p --colors --progress --config=./webpack/prod.config.js",
-    "electron": "electron ."
+    "electron": "electron .",
+    "sinopia": "sinopia"
   },
-  "author": "",
+  "registry": "http://localhost:4873",
+  "author": "Vicente de Alencar <vicentedealencar@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer-loader": "^2.0.0",
@@ -19,6 +21,7 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "node-libs-browser": "^0.5.2",
     "react-hot-loader": "^1.2.7",
+    "sinopia": "^1.4.0",
     "style-loader": "^0.12.3",
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.10.1"
@@ -27,6 +30,8 @@
     "array.from": "^0.2.0",
     "belle": "^1.2.2",
     "deep-equal": "^1.0.1",
+    "electron-plugins": "0.0.4",
+    "electron-updater": "^0.2.2",
     "invariant": "^2.1.0",
     "json-loader": "^0.5.2",
     "pouchdb": "^5.0.0",
